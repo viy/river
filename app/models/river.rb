@@ -13,7 +13,7 @@ class River < ApplicationRecord
 
   after_update_commit do
     if match_type
-      #broadcast_update html: match_type.humanize
+      broadcast_update html: match_type.humanize
     end
   end
 end

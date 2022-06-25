@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_201917) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rivers", id: :integer, default: -> { "nextval('ww_guide_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "rivers", id: :integer, force: :cascade do |t|
     t.float "put_in_lat"
     t.float "put_in_long"
     t.float "take_out_lat"

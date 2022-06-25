@@ -1,0 +1,14 @@
+#map {
+  min-height: 400px;
+}
+
+.row>.col, .row>[class^="col-"] {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background-color: rgba(39,41,43,0.03);
+  border: 1px solid rgba(39,41,43,0.1);
+}
+
+.btn.right {
+  float: right;
+}

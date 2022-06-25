@@ -1,0 +1,7 @@
+<%= turbo_frame_tag :rivers_frame do %>
+  <% if @source %>
+    <%= render partial: 'rivers/rivers', locals: { source: @source, destinations: @destinations } %>
+  <% else %>
+    No rivers to match
+  <% end %>
+<% end %>

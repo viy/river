@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= turbo_stream_from 'notifications' %>
+      <%= turbo_frame_tag :notifications %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"  data-controller="rivers">
+      <%= form_tag import_rivers_path, method: :post, multipart: true do %>
+        <%= file_field_tag "rivers" %>
+        <button type="submit" class="btn btn-secondary right" data-action="click->rivers#importMap">Import</button>
+      <% end %>
+
+    </div>
+    <div class="col">
+      <a class="btn btn-success right" href="<%= export_rivers_path %>">Export</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= turbo_stream_from 'rivers' %>
+      <%= turbo_frame_tag :rivers_frame, src: edit_river_path(@source_id)%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2> To Match </h2>
+      <%= render partial: 'river_list', locals: {river_list: @river_list} %>
+    </div>
+  </div>
+</div>
+
+<%=
+  javascript_include_tag "https://unpkg.com/leaflet@1.8.0/dist/leaflet.js",
+                         integrity:"sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==",
+                         crossorigin:""
+%>

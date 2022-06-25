@@ -1,0 +1,15 @@
+<%= turbo_stream_from river %>
+<tr data-action="click->search-form#map" data-search-form-src-param="<%= edit_river_path(river)%> ">
+  <td>
+    <%= river.river %>
+  </td>
+  <td>
+    <%= river.section %>
+  </td>
+  <td id="<%= dom_id river %>">
+    <%= river.match_type.humanize %>
+  </td>
+  <td>
+    <%= river.grade %>
+  </td>
+</tr>

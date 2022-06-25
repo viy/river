@@ -1,0 +1,14 @@
+<% if @import %>
+  <%= turbo_stream.replace "notifications" do %>
+    <% if @import.errors.present? %>
+      Errors: <%= @import.errors.join(', ') %>
+    <% else %>
+      Imported <%= @import.total_rivers %><br>
+      Matched <%= @import.matched_rivers %><br>
+      Ready To Matched <%= @import.ready_to_match %><br>
+      Not Matchable <%= @import.not_matched %><br>
+    <% end %>
+  <% end %>
+  <%= render 'match' %>
+  <%= turbo_stream.update "rivers_list_stream" %>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="map-container" data-controller="rivers">
+  <form id='rivers' data-rivers-target="form" action=<%= match_river_path(source.id) %> method="POST">
+    <input id='dest_id' name="dest_id" type="hidden" data-rivers-target="destId" />
+    <div class="row">
+      <div class="col">
+        <h2><%= "#{source.river} - #{source.section} #{source.grade}"%></h2>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-secondary right" name='skip' value="skip">Skip</button>
+      </div>
+    </div>
+    <% destinations.map! do |destination|
+         { id: destination.id,
+           name: "#{destination.river} - #{destination.section} #{destination.grade} (#{destination.source.name})",
+           coord: [
+             [destination.put_in_lat, destination.put_in_long],
+             [destination.take_out_lat, destination.take_out_long]
+           ]
+         }
+       end
+    %>
+
+    <div
+      id="river"
+      data-rivers-target="rivers"
+      data-value='<%= {source: { name: "#{source.river} - #{source.section} #{source.grade}",
+                            coord: [[source.put_in_lat, source.put_in_long ],
+                                    [source.take_out_lat, source.take_out_long ]]},
+                    destinations: destinations }.to_json %>'
+    ></div>
+  </form>
+  <div id="map"></div>
+</div>

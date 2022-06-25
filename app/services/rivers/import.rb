@@ -81,7 +81,7 @@ module Rivers
     def distant_match_rivers
       distant_match_sql = sql + ' AND a.id NOT IN (?)'
       matches = ActiveRecord::Base.connection.execute(
-        River.sanitize_sql_array([distant_match_sql, 10000, 10000,
+        River.sanitize_sql_array([distant_match_sql, 5000, 5000,
                                   @source_id, @source_id, @parsed_rivers_ids,
                                   @close_match_ids]))
       matches.each do |row|

@@ -1,24 +1,9 @@
-# README
+# River Matcher
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### CSV Import format
 
-Things you may want to cover:
+id,put_in_lat,put_in_long,take_out_lat,take_out_long,river_name,name,grade
 
-* Ruby version
+### Export Format
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+match_id, source_id, destination_id, destination_name

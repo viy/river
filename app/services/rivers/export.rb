@@ -11,7 +11,7 @@ module Rivers
         River.sanitize_sql_array([sql, @source_id, @source_id]))
       file = Tempfile.new('rivers.csv')
       rivers.each do |row|
-        file << "#{row['origin_id']},#{row['destination_id']},#{row['source_name']}\n"
+        file << "#{row['match_id']}, #{row['origin_id']},#{row['destination_id']},#{row['source_name']}\n"
       end
       file
     ensure
@@ -21,7 +21,7 @@ module Rivers
 
     def sql
       <<-SQL
-        SELECT a.origin_id as origin_id,  b.origin_id as destination_id, sources.name as source_name
+        SELECT a.match_id as match_id, a.origin_id as origin_id,  b.origin_id as destination_id, sources.name as source_name
         FROM rivers as a
         JOIN rivers as b
         ON  a.match_id = b.match_id

@@ -62,7 +62,7 @@ module Rivers
     end
 
     def close_match_rivers
-      close_match_sql = sql + " AND a.id IN (?)"
+      close_match_sql = sql + " AND a.source_id = ? AND b.source_id != ? AND a.id IN (?)"
       matches = ActiveRecord::Base.connection.execute(
         River.sanitize_sql_array([close_match_sql, 300, 300, @source_id, @source_id, @parsed_rivers_ids]))
       matches.each do |row|
@@ -81,7 +81,7 @@ module Rivers
     end
 
     def distant_match_rivers
-      distant_match_sql = sql + ' AND a.match_id IS NULL'
+      distant_match_sql = sql + ' AND a.source_id != b.source_id AND a.match_id IS NULL'
       matches = ActiveRecord::Base.connection.execute(
         River.sanitize_sql_array([distant_match_sql, 5000, 5000,
                                   @source_id, @source_id]))
@@ -99,7 +99,6 @@ module Rivers
         WHERE
             (ST_DistanceSphere(ST_MakePoint(a.take_out_long, a.take_out_lat), ST_MakePoint(b.take_out_long, b.take_out_lat)) < ?
           AND ST_DistanceSphere(ST_MakePoint(a.put_in_long, a.put_in_lat), ST_MakePoint(b.put_in_long, b.put_in_lat)) < ?)
-          AND a.source_id = ? AND b.source_id != ?
       SQL
     end
   end

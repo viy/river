@@ -81,7 +81,7 @@ module Rivers
     end
 
     def distant_match_rivers
-      distant_match_sql = sql + ' a.match_id IS NULL'
+      distant_match_sql = sql + ' AND a.match_id IS NULL'
       matches = ActiveRecord::Base.connection.execute(
         River.sanitize_sql_array([distant_match_sql, 5000, 5000,
                                   @source_id, @source_id]))

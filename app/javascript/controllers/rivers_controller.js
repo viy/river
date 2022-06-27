@@ -44,7 +44,7 @@ export default class extends Controller {
     this.pLineGroup = L.layerGroup()
 
     for (let key in destinations) {
-      let options = {color: 'blue', id: destinations[key]['id'], name: destinations[key]['name']}
+      let options = {color: destinations[key]['color'], id: destinations[key]['id'], name: destinations[key]['name']}
       let polyline = L.polyline(destinations[key]['coord'], options);
       this.pLineGroup.addLayer(polyline)
       polyline.bindTooltip(destinations[key]['name']);

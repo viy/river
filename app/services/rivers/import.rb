@@ -83,8 +83,7 @@ module Rivers
     def distant_match_rivers
       distant_match_sql = sql + ' AND a.source_id != b.source_id AND a.match_id IS NULL'
       matches = ActiveRecord::Base.connection.execute(
-        River.sanitize_sql_array([distant_match_sql, 5000, 5000,
-                                  @source_id, @source_id]))
+        River.sanitize_sql_array([distant_match_sql, 5000, 5000]))
       matches.each do |row|
         match_river = River.find(row['origin_id'])
         match_river.update(match_type: 'ready_to_match')

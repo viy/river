@@ -12,6 +12,7 @@
     <% destinations.map! do |destination|
          { id: destination.id,
            name: "#{destination.river} - #{destination.section} #{destination.grade} (#{destination.source.name})",
+           color: destination.color(session[:source_id]),
            coord: [
              [destination.put_in_lat, destination.put_in_long],
              [destination.take_out_lat, destination.take_out_long]

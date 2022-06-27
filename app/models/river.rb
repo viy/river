@@ -16,4 +16,10 @@ class River < ApplicationRecord
       broadcast_update html: match_type.humanize
     end
   end
+
+  def color(source_id)
+    return 'green' if match_id && River.where(source_id: source_id, match_id: match_id).any?
+
+    'blue'
+  end
 end
